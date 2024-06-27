@@ -1,0 +1,23 @@
+ 
+{% for i in face_locations %}
+
+<h1>Find faces in pictures</h1>
+ {{face_locations}}
+ <br>
+ <h1>facial features in pictures </h1>
+
+ {{face_landmarks_list}}
+
+ <h1>image</h1>
+ {{im}}
+
+ <h1>unknown_image</h1>
+ {{unknown_im}}
+
+
+ <h1>Result</h1>
+ {{result}}
+ {% endfor %}
+
+
+{% endblock content %}

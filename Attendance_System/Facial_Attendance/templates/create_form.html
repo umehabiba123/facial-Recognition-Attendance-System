@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+create form
+{% endblock title %}
+{% block content %}
+<form class=" col-sm-4 mx-auto my-4" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                {{form}}
+        </div>
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary mt-4">
+    </div>
+ </form>
+
+{% endblock content %}

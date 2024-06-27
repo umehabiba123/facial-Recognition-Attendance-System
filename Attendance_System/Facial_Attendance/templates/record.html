@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance Success{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <h1 class="text-success">Attendance Marked Successfully!</h1>
+                <p class="lead"><strong>Student ID:</strong> {{ user.pk }}</p>
+                <p class="lead"><strong>Student Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+                <p class="lead"><strong>Date:</strong> {{ attendance_record.date }}</p>
+                <p class="lead"><strong>Time:</strong> {{ attendance_record.time_in }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
