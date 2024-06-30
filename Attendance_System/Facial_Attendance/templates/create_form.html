@@ -3,16 +3,20 @@
 create form
 {% endblock title %}
 {% block content %}
-<form class=" col-sm-4 mx-auto my-4" method="post" enctype="multipart/form-data">
+
+<form class="container col-sm-4 mx-auto mt-6 my-4" method="post" enctype="multipart/form-data ">
     {% csrf_token %}
-    <div class="container">
+    <h1><b>Create user</b></h1>
+<hr>
+    <div class="container shadow mt-6 align-items-center" style="background-color: aquamarine;">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
+
                 {{form}}
+            </div>
         </div>
+        <input type="submit" value="Save" class="btn btn-primary mt-3  btn-lg">
     </div>
-    <input type="submit" value="Save" class="btn btn-primary mt-4">
-    </div>
- </form>
+</form>
 
 {% endblock content %}

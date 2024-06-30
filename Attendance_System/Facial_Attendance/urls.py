@@ -5,7 +5,7 @@ from .views import register_person, attendanceRecord, person_detail,compare_imag
 
 urlpatterns = [
     path("", front_page, name="front_page"),
-    path("register/",register_person, name="register_person"),
+    path("create/",register_person, name="create"),
     path("home/", attendanceRecord, name="attendanceRecord"),
     path("detail/<int:id>", person_detail, name="person_detail"),
     path("attendance_record/",attendance_record,name='attendance_record'),

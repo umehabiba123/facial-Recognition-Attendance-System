@@ -35,7 +35,7 @@ def user_signup(request):
         if form.is_valid():
             messages.success(request, 'Congratulation !! You have become an author')
             form.save()
-            return redirect('/home/')
+            return redirect("/home/")
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -80,9 +80,8 @@ def person_detail(request, id):
 def delete_person(request,pk):
     delete_object = User_form.object.get(pk=pk)
     delete_object.delete()
-    return render("/")
+    return render("/home/")
 
-register_person
 
 
 def mark_attendance_success(request, pk):
@@ -101,12 +100,6 @@ def mark_attendance_success(request, pk):
         
     print(attendance_record)
    
-    # AttendanceRecord.user = get_object_or_404(User, first_name=user_att) 
-    
-    # attendance_record = get_object_or_404(AttendanceRecord, user=AttendanceRecord.user)
-   
-
-    # attendance_record = get_object_or_404(AttendanceRecord, user=pk)
 
     user = attendance_record.user
     
@@ -152,26 +145,36 @@ def encode_database_images():
     return encoded_images
 
 def compare_faces(live_image, encoded_images):
+    import face_recognition
+
+    # Get face encodings for the live image
     live_encodings = face_recognition.face_encodings(live_image)
 
+    # If no faces are found, print a message and return an empty list
     if not live_encodings:
         print("No faces found in the live image.")
         return []
 
+    # Assuming only one face is expected, take the first encoding
     live_encoding = live_encodings[0]
     results = []
-    
+
+    # Compare the live encoding with each encoded image in the database
     for name, pk, db_encoding in encoded_images:
         match = face_recognition.compare_faces([db_encoding], live_encoding)
         distance = face_recognition.face_distance([db_encoding], live_encoding)
         if match[0]:
             results.append((name, pk, distance[0]))
-    
-    # Sort results by distance
+
+    # Sort results by distance, the smaller the distance, the better the match
     results.sort(key=lambda x: x[2])
+    
     return results
 
 
+
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
 
 def compare_images(request):
     if request.method == 'POST':
@@ -185,17 +188,17 @@ def compare_images(request):
         if not encoded_images:
             return JsonResponse({'error': 'No images encoded from the database'}, status=500)
 
-        # Compare the live image to the database images
+        # Compare faces and get the results
         results = compare_faces(live_image, encoded_images)
         if results:
-            print("hello2",results)
+            # Get the user ID of the best match
             user_id = results[0][1]
-            print(user_id)
             return redirect('mark_attendance_success', pk=user_id)
-            # return render(request,"success.html")
         else:
-            return HttpResponse("unSuccessful")
+            return render(request, 'unsuccess.html')
+    
     return render(request, 'compare_images.html')
+
 
 def attendance_record(request):
     attendance_records = AttendanceRecord.objects.all()
@@ -206,4 +209,6 @@ def attendance_record(request):
 def delete_person(request,id):
     person = User_form.objects.get(pk=id)
     person.delete()
-    return redirect("/home")
+    return redirect("attendanceRecord")
+
+
