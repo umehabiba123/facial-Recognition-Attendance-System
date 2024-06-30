@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block navbar %}
+<!-- Empty block to override and remove the navbar -->
+{% endblock navbar %}
+
+{% block content %}
+<div class="container-fluid" style="background-color: #6cdcf5; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+  
+ 
+    <div class="row justify-content-center w-100" style="margin-top: 50px;">
+        <div class="col-md-4 mb-4">
+            <div class="text-center">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://th.bing.com/th?id=OIP.vdf_MGnTWfrYnyR_P3iT7wHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="nothing" style="height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{portal.first_name}}</h5>
+                        <p class="card-title">{{portal.last_name}}</p>
+                        <p class="card-text">{{portal.description}}</p>
+                        <a href="{% url 'compare_images' %}" class="btn btn-secondary">
+                            <button class="btn btn-secondary" type="button">Mark Attendance</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="text-center">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://media.istockphoto.com/id/1138947293/photo/access-window-enter-login-and-password-cyber-protection.jpg?s=1024x1024&w=is&k=20&c=v-WXZAbeNAtw866AJ4dj9zQ04xn9rLJw13tNCb_HYSQ=" alt="{{portal.profile_picture}}" style="height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{portal.first_name}}</h5>
+                        <p class="card-title">{{portal.last_name}}</p>
+                        <p class="card-text">{{portal.description}}</p>
+                        <a href="{% url 'user_login' %}" class="btn btn-secondary">
+                            <button class="btn btn-secondary" type="button">LOGIN</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

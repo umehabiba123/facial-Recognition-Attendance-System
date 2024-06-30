@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+HOME
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container shadow mb-3">
+    <div class="row">     
+        {% for portal in portal %}     
+        <div class="col-md-4">
+            <div class=" text-center mb-3">
+                <div class="card" style="width: 18rem;">
+                   
+                    
+                    <img class="card-img-top"  src="/{{portal.profile_picture}}"  alt="{{portal.profile_picture}}" style="height: 220px;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{portal.first_name}}</h5>
+                        <p class="card-title">{{portal.last_name}}</p>
+                        <p class="card-text">{{portal.description}}</p>
+                        <a href="/detail/{{portal.id}}" class="btn btn-primary">
+                            <button class="btn btn-primary" type="button">MORE DETAIL</button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}

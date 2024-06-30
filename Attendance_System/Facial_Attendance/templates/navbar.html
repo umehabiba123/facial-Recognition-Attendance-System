@@ -1,0 +1,49 @@
+{% block nav %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top mb-4 shadow"> <!-- Added mb-4 class for margin bottom -->
+    <div class="container">
+        <a class="navbar-brand " href="#"
+            style="font-family: 'Arial Black', sans-serif; font-weight: bold; font-size: 24px;">Facial Recognition
+            System</a>
+
+        <div class="collapse navbar-collapse justify-content-end"  style="font-size: 20px;" id="navbarNav">
+            <ul class="navbar-nav">
+                {%if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{%url 'attendanceRecord'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{%url 'create'%}">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="{% url 'attendance_record' %}">Record</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="{%url 'compare_images'%}">Mark Attendence</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="{% url 'user_signupForm' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {%else%}
+                <li class="nav-item">
+
+                    <a class="nav-link text-white" aria-current="page" href="{% url 'compare_images' %}">Mark Attendance</a>
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link text-white" aria-current="page" href="{%url 'user_login'%}">LOGIN</a>
+                </li>
+
+
+                {%endif%}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock nav %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+create form
+{% endblock title %}
+{% block content %}
+
+<form class="container col-sm-4 mx-auto mt-6 my-4" method="post" enctype="multipart/form-data ">
+    {% csrf_token %}
+    <h1><b>Create user</b></h1>
+<hr>
+    <div class="container shadow mt-6 align-items-center" style="background-color: aquamarine;">
+        <div class="row">
+            <div class="col-sm-5">
+
+                {{form}}
+            </div>
+        </div>
+        <input type="submit" value="Save" class="btn btn-primary mt-3  btn-lg">
+    </div>
+</form>
+
+{% endblock content %}
